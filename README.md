@@ -8,6 +8,7 @@ Make sure you are using a virtual environment of some sort (e.g. `virtualenv` or
 ```
 npm install
 pip install -r requirements.txt
+createdb patches
 ./manage.py migrate
 ./manage.py loaddata sites
 npm run dev
