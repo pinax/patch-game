@@ -191,9 +191,8 @@ ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 2
 ACCOUNT_USE_AUTH_AUTHENTICATE = True
 
 AUTHENTICATION_BACKENDS = [
-    "social_core.backends.twitter.TwitterOAuth",
-    "account.auth_backends.UsernameAuthenticationBackend",
+    "social_core.backends.github.GithubOAuth2"
 ]
 
-SOCIAL_AUTH_TWITTER_KEY = ""
-SOCIAL_AUTH_TWITTER_SECRET = ""
+SOCIAL_AUTH_GITHUB_KEY = "ec181e400a4cf42836a6"
+SOCIAL_AUTH_GITHUB_SECRET = "f96483f2d318edfff5c8a4dbda75f8ab7f66cb8d"
