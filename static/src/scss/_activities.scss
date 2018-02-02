@@ -1,0 +1,15 @@
+body.activity {
+    background: $gray-100;
+    .activity {
+        width: 500px;
+        margin: 40px auto;
+        text-align: center;
+        padding: 20px 40px;
+        img {
+            margin-bottom: 20px;
+        }
+        background: #FFF;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.10);
+        border-radius: 3px;
+    }
+}

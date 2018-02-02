@@ -1,0 +1,15 @@
+{% extends "site_base.html" %}
+
+{% block body_class %}activity{% endblock %}
+
+{% block body %}
+<div class="activity">
+    <h1>Guess the Patch</h1>
+    <img src="{{ activity.question }}">
+    <div class="choices list-group">
+        {% for choice in activity.choices %}
+            <div class="list-group-item">{{ choice }}</div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
