@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from .patches import build
+from .factories import build
 
 
 def activity(request):
