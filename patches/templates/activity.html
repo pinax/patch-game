@@ -6,10 +6,11 @@
 <div class="activity">
     <h1>Guess the Patch</h1>
     <img src="{{ activity.question }}">
-    <div class="choices list-group">
+    <form method="post" action="{% url "response" item_showing.pk %}">
+        {% csrf_token %}
         {% for choice in activity.choices %}
-            <div class="list-group-item">{{ choice }}</div>
+            <input type="submit" class="btn btn-outline-primary btn-block" value="{{ choice }}" name="answer" />
         {% endfor %}
-    </div>
+    </form>
 </div>
 {% endblock %}

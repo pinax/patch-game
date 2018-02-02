@@ -5,7 +5,7 @@ from django.views.generic import TemplateView
 
 from django.contrib import admin
 
-from .views import activity
+from .views import activity, response
 
 
 urlpatterns = [
@@ -15,7 +15,8 @@ urlpatterns = [
     path("account/social/accounts/", TemplateView.as_view(template_name="account/social.html"), name="account_social_accounts"),
     path("account/social/", include("social_django.urls", namespace="social")),
 
-    path("activity/", activity, name="activity")
+    path("activity/", activity, name="activity"),
+    path("response/<int:pk>/", response, name="response")
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

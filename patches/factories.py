@@ -38,8 +38,7 @@ apps = [
 ]
 
 
-def build():
-    app = random.choice(apps)
+def create_item(app):
     patch = "{}{}.svg".format(BASE_URL, app)
     distractors = random.sample(list(filter(lambda x: x != app, apps)), SAMPLE_SIZE)
     choices = distractors + [app]
@@ -50,3 +49,10 @@ def build():
         distractors=distractors,
         choices=choices
     )
+
+
+def generate_items():
+    dataset = {}
+    for app in apps:
+        dataset[app] = create_item(app)
+    return dataset
