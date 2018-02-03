@@ -1,0 +1,11 @@
+#tessellations {
+    position: relative;
+    img {
+        position: absolute;
+        opacity: 0.2;
+    }
+    .btn {
+        margin-top: 300px;
+        width: calc(100% + 75px);
+    }
+}

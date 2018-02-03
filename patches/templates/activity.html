@@ -9,8 +9,15 @@
     <form method="post" action="{% url "response" item_showing.pk %}">
         {% csrf_token %}
         {% for choice in activity.choices %}
-            <input type="submit" class="btn btn-outline-primary btn-block" value="{{ choice }}" name="answer" />
+            <input type="submit" class="btn btn-outline-secondary btn-block" value="{{ choice }}" name="answer" />
         {% endfor %}
     </form>
+    <div class="footer">
+        {% for correct in correct_answers %}
+        <figure>
+            <img src="http://pinaxproject.com/pinax-design/patches/{{ correct.answer.answer }}.svg" />
+        </figure>
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}
