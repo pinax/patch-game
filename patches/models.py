@@ -1,3 +1,5 @@
+import time
+
 from django.contrib.auth.models import User
 from django.contrib.postgres.fields import JSONField
 from django.core.validators import MaxValueValidator
@@ -42,9 +44,11 @@ class Response(models.Model):
         super().save(*args, **kwargs)
         if self.score == 100:
             self.showing.user_state.store_last_correct(self.showing.data["answer"])
-            award_points(self.showing.user, 5)
+            apv = award_points(self.showing.user, 5)
         else:
-            award_points(self.showing.user, -1)
+            apv = award_points(self.showing.user, -1)
+        self.showing.user_state.store("last_points", apv.points)
+        self.showing.user_state.store("last_points_awarded", time.time())
 
 
 class UserState(models.Model):

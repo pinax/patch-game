@@ -1,3 +1,4 @@
+import time
 import random
 
 from django.shortcuts import redirect, render, get_object_or_404
@@ -36,9 +37,16 @@ def activity(request):
         user_state.store("last_asked", item["answer"])
     else:
         showing = None
+
+    points_awarded = ""
+    if user_state.data.get("last_points_awarded") is not None:
+        award_date = user_state.data.get("last_points_awarded")
+        if time.time() - award_date < 3:
+            points_awarded = user_state.data.get("last_points", "")
     return render(request, "activity.html", {
         "showing": showing,
-        "correct_answers": list(user_state.data.get("last_correct", {}))
+        "correct_answers": list(user_state.data.get("last_correct", {})),
+        "points_awarded": points_awarded
     })
 
 
