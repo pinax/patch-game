@@ -4,6 +4,8 @@ from django.core.validators import MaxValueValidator
 from django.db import models
 from django.utils import timezone
 
+from pinax.points.models import award_points
+
 
 class Showing(models.Model):
     """
@@ -40,6 +42,9 @@ class Response(models.Model):
         super().save(*args, **kwargs)
         if self.score == 100:
             self.showing.user_state.store_last_correct(self.showing.data["answer"])
+            award_points(self.showing.user, 5)
+        else:
+            award_points(self.showing.user, -1)
 
 
 class UserState(models.Model):

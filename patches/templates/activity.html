@@ -1,9 +1,15 @@
 {% extends "site_base.html" %}
 
+{% load pinax_points_tags %}
+
 {% block body_class %}activity{% endblock %}
 
 {% block body %}
+
+{% points_for_object user as points %}
+
 <div class="activity">
+    <div class="user-points">Score {{ points }}</div>
     {% if showing %}
         <h1>Guess the Patch</h1>
         <img src="{{ showing.data.question }}">

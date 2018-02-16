@@ -2,5 +2,6 @@
 -r requirements-account.txt
 -r requirements-social-auth.txt
 
+pinax-points==1.0
 dj_database_url==0.4.2
 psycopg2==2.7.3.2

@@ -136,6 +136,7 @@ INSTALLED_APPS = [
     # external
     "account",
     "pinax.eventlog",
+    "pinax.points",
     "pinax.webanalytics",
     "social_django",
 
