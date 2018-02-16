@@ -23,7 +23,7 @@ class Response(models.Model):
     """
     The response a user records for each showing of an Item.
     """
-    item = models.ForeignKey(Showing, on_delete=models.CASCADE)
+    showing = models.ForeignKey(Showing, on_delete=models.CASCADE)
     created_at = models.DateTimeField(default=timezone.now)
     answer = JSONField(blank=True)
     score = models.PositiveSmallIntegerField(
@@ -33,11 +33,11 @@ class Response(models.Model):
     )
 
     def save(self, *args, **kwargs):
-        if self.answer["answer"] == self.item.data["answer"]:
+        if self.answer["answer"] == self.showing.data["answer"]:
             self.score = 100
         else:
             self.score = 0
-        self.item.user_state.store_last_correct(self.item.data["answer"])
+        self.showing.user_state.store_last_correct(self.showing.data["answer"])
         return super().save(*args, **kwargs)
 
 

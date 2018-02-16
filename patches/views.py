@@ -36,7 +36,7 @@ def activity(request):
         "showing": showing,
         "correct_answers": Response.objects.filter(
             score=100,
-            item__user=request.user
+            showing__user=request.user
         ).distinct()
     })
 
@@ -44,5 +44,5 @@ def activity(request):
 @login_required
 def response(request, pk):
     showing = get_object_or_404(Showing, user=request.user, pk=pk)
-    Response.objects.create(item=showing, answer={"answer": request.POST.get("answer")})
+    Response.objects.create(showing=showing, answer={"answer": request.POST.get("answer")})
     return redirect("activity")
