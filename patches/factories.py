@@ -53,6 +53,8 @@ def create_item(app):
 
 def generate_items(user_state):
     dataset = {}
-    for app in [app for app in apps if app != user_state.get("last_asked")]:
+    filtered_apps = [app for app in apps if app != user_state.get("last_asked")]
+    filtered_apps = [app for app in filtered_apps if app not in user_state.get("last_correct", {})]
+    for app in filtered_apps:
         dataset[app] = create_item(app)
     return dataset

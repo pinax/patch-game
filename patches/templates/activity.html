@@ -4,20 +4,31 @@
 
 {% block body %}
 <div class="activity">
-    <h1>Guess the Patch</h1>
-    <img src="{{ showing.data.question }}">
-    <form method="post" action="{% url "response" showing.pk %}">
-        {% csrf_token %}
-        {% for choice in showing.data.choices %}
-            <input type="submit" class="btn btn-outline-secondary btn-block" value="{{ choice }}" name="answer" />
-        {% endfor %}
-    </form>
-    <div class="footer">
-        {% for correct in correct_answers %}
-        <figure>
-            <img src="http://pinaxproject.com/pinax-design/patches/{{ correct.answer.answer }}.svg" />
-        </figure>
-        {% endfor %}
-    </div>
+    {% if showing %}
+        <h1>Guess the Patch</h1>
+        <img src="{{ showing.data.question }}">
+        <form method="post" action="{% url "response" showing.pk %}">
+            {% csrf_token %}
+            {% for choice in showing.data.choices %}
+                <input type="submit" class="btn btn-outline-secondary btn-block" value="{{ choice }}" name="answer" />
+            {% endfor %}
+        </form>
+        <div class="footer">
+            {% for correct in correct_answers %}
+            <figure>
+                <img src="http://pinaxproject.com/pinax-design/patches/{{ correct.answer.answer }}.svg" />
+            </figure>
+            {% endfor %}
+        </div>
+    {% else %}
+        <h1>You Win!</h1>
+        <div class="you-win">
+            {% for answer in correct_answers %}
+            <figure>
+                <img src="http://pinaxproject.com/pinax-design/patches/{{ answer }}.svg" />
+            </figure>
+            {% endfor %}
+        </div>
+    {% endif %}
 </div>
 {% endblock %}

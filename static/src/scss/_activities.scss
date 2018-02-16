@@ -12,6 +12,16 @@ body.activity {
         box-shadow: 0 4px 8px 0 rgba(0,0,0,0.10);
         border-radius: 3px;
 
+        .you-win,
+        .footer {
+            figure {
+                display: inline;
+                img {
+                  width: 30px;
+                }
+                margin-right: 10px;
+            }
+        }
         .footer {
             border-top: 1px solid $gray-300;
             margin-top: 20px;
@@ -22,13 +32,6 @@ body.activity {
             border-bottom-right-radius: 3px;
             padding: 20px 40px 0 40px;
             background: $gray-100;
-            figure {
-                display: inline;
-                img {
-                  width: 30px;
-                }
-                margin-right: 10px;
-            }
         }
     }
 }

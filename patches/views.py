@@ -29,15 +29,15 @@ class HomePage(TemplateView):
 def activity(request):
     user_state = UserState.state_for_user(request.user)
     items = generate_items(user_state.data)
-    item = items[random.choice(list(items))]
-    showing = Showing.objects.create(user=request.user, data=item)
-    user_state.store("last_asked", item["answer"])
+    if len(items) > 0:
+        item = items[random.choice(list(items))]
+        showing = Showing.objects.create(user=request.user, data=item)
+        user_state.store("last_asked", item["answer"])
+    else:
+        showing = None
     return render(request, "activity.html", {
         "showing": showing,
-        "correct_answers": Response.objects.filter(
-            score=100,
-            showing__user=request.user
-        ).distinct()
+        "correct_answers": list(user_state.data.get("last_correct", {}))
     })
 
 
