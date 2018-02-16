@@ -2,6 +2,7 @@ import random
 
 from django.shortcuts import redirect, render, get_object_or_404
 from django.views.generic import TemplateView
+from django.views.decorators.http import require_POST
 
 from account.decorators import login_required
 
@@ -41,6 +42,7 @@ def activity(request):
     })
 
 
+@require_POST
 @login_required
 def response(request, pk):
     showing = get_object_or_404(Showing, user=request.user, pk=pk)
