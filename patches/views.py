@@ -46,5 +46,6 @@ def activity(request):
 @login_required
 def response(request, pk):
     showing = get_object_or_404(Showing, user=request.user, pk=pk)
-    Response.objects.create(showing=showing, answer={"answer": request.POST.get("answer")})
+    if not hasattr(showing, "response"):
+        Response.objects.create(showing=showing, answer={"answer": request.POST.get("answer")})
     return redirect("activity")
