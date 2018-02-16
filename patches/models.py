@@ -14,6 +14,10 @@ class Showing(models.Model):
     data = JSONField()
     created_at = models.DateTimeField(default=timezone.now)
 
+    @property
+    def user_state(self):
+        return UserState.state_for_user(self.user)
+
 
 class Response(models.Model):
     """
@@ -33,9 +37,25 @@ class Response(models.Model):
             self.score = 100
         else:
             self.score = 0
+        self.item.user_state.store_last_correct(self.item.data["answer"])
         return super().save(*args, **kwargs)
 
 
 class UserState(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     data = JSONField(default=dict)
+
+    @classmethod
+    def state_for_user(cls, user):
+        state, _ = cls.objects.get_or_create(user=user)
+        return state
+
+    def store(self, key, value):
+        self.data[key] = value
+        self.save()
+
+    def store_last_correct(self, value):
+        if "last_correct" not in self.data:
+            self.data["last_correct"] = {}
+        self.data["last_correct"].update({value: timezone.now().isoformat()})
+        self.save()

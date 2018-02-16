@@ -27,12 +27,11 @@ class HomePage(TemplateView):
 
 @login_required
 def activity(request):
-    user_state, _ = UserState.objects.get_or_create(user=request.user)
+    user_state = UserState.state_for_user(request.user)
     items = generate_items(user_state.data)
     item = items[random.choice(list(items))]
     showing = Showing.objects.create(user=request.user, data=item)
-    user_state.data["last_asked"] = item["answer"]
-    user_state.save()
+    user_state.store("last_asked", item["answer"])
     return render(request, "activity.html", {
         "showing": showing,
         "correct_answers": Response.objects.filter(
