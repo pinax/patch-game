@@ -51,7 +51,7 @@ def create_item(app):
     )
 
 
-def generate_items():
+def generate_items(user):
     dataset = {}
     for app in apps:
         dataset[app] = create_item(app)

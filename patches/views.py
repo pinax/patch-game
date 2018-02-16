@@ -1,10 +1,12 @@
+import random
+
 from django.shortcuts import redirect, render, get_object_or_404
 from django.views.generic import TemplateView
 
 from account.decorators import login_required
 
 from .factories import apps, generate_items
-from .models import ActivityItem, ActivitySession, SessionItem, ItemShowing, Response
+from .models import Showing, Response
 
 
 class HomePage(TemplateView):
@@ -25,26 +27,20 @@ class HomePage(TemplateView):
 
 @login_required
 def activity(request):
-    session, created = ActivitySession.objects.get_or_create(user=request.user)
-    if created:
-        items = generate_items()
-        for app in items.keys():
-            ActivityItem.objects.create(data=items[app])
-    item = ActivityItem.objects.all().order_by("?").first()
-    session_item, _ = SessionItem.objects.get_or_create(item=item, session=session)
-    item_showing = ItemShowing.objects.create(item=session_item)
+    items = generate_items(request.user)
+    item = items[random.choice(list(items))]
+    showing = Showing.objects.create(user=request.user, data=item)
     return render(request, "activity.html", {
-        "activity": item.data,
-        "item_showing": item_showing,
+        "showing": showing,
         "correct_answers": Response.objects.filter(
             score=100,
-            item__item__session__user=request.user
+            item__user=request.user
         ).distinct()
     })
 
 
 @login_required
 def response(request, pk):
-    item_showing = get_object_or_404(ItemShowing, item__session__user=request.user, pk=pk)
-    Response.objects.create(item=item_showing, answer={"answer": request.POST.get("answer")})
+    showing = get_object_or_404(Showing, user=request.user, pk=pk)
+    Response.objects.create(item=showing, answer={"answer": request.POST.get("answer")})
     return redirect("activity")
