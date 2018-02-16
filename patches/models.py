@@ -34,3 +34,8 @@ class Response(models.Model):
         else:
             self.score = 0
         return super().save(*args, **kwargs)
+
+
+class UserState(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    data = JSONField(default=dict)

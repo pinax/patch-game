@@ -51,8 +51,8 @@ def create_item(app):
     )
 
 
-def generate_items(user):
+def generate_items(user_state):
     dataset = {}
-    for app in apps:
+    for app in [app for app in apps if app != user_state.get("last_asked")]:
         dataset[app] = create_item(app)
     return dataset

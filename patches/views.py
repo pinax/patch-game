@@ -6,7 +6,7 @@ from django.views.generic import TemplateView
 from account.decorators import login_required
 
 from .factories import apps, generate_items
-from .models import Showing, Response
+from .models import Showing, Response, UserState
 
 
 class HomePage(TemplateView):
@@ -27,9 +27,12 @@ class HomePage(TemplateView):
 
 @login_required
 def activity(request):
-    items = generate_items(request.user)
+    user_state, _ = UserState.objects.get_or_create(user=request.user)
+    items = generate_items(user_state.data)
     item = items[random.choice(list(items))]
     showing = Showing.objects.create(user=request.user, data=item)
+    user_state.data["last_asked"] = item["answer"]
+    user_state.save()
     return render(request, "activity.html", {
         "showing": showing,
         "correct_answers": Response.objects.filter(
