@@ -9,7 +9,7 @@ body.activity {
             margin-bottom: 20px;
         }
         background: #FFF;
-        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.10);
+        box-shadow: 0 2px 4px 0 rgba(0,0,0,0.10);
         border-radius: 3px;
 
         .you-win,
@@ -32,6 +32,20 @@ body.activity {
             border-bottom-right-radius: 3px;
             padding: 20px 40px 0 40px;
             background: $gray-100;
+        }
+    }
+    .patch-button {
+        display: block;
+        width: 100%;
+        background: $gray-100;
+        border: 1px solid $gray-300;
+        margin-bottom: -1px;
+        padding: 10px;
+        cursor: pointer;
+        color: $gray-600;
+        &:hover {
+            background: lighten($teal, 45%);
+            color: $teal;
         }
     }
 }
