@@ -9,14 +9,28 @@ from django.utils import timezone
 from pinax.points.models import award_points
 
 
+class Topic(models.Model):
+    """
+    An entity object that provides a way to have categories of items.
+    """
+    name = models.CharField(max_length=500)
+
+
 class Showing(models.Model):
     """
-    Each time an item in a session is shown to the user, record that information
+    Each time an item is shown to the user, record that information
     with this model
     """
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     data = JSONField()
+    topics = models.ManyToManyField(Topic)
     created_at = models.DateTimeField(default=timezone.now)
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        for name in self.data.get("topics", []):
+            topic, _ = Topic.objects.get_or_create(name=name)
+            self.topics.add(topic)
 
     @property
     def user_state(self):
