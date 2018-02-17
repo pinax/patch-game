@@ -59,6 +59,8 @@ class Response(models.Model):
         if self.score == 100:
             self.showing.user_state.store_last_correct(self.showing.data["answer"])
             apv = award_points(self.showing.user, 5)
+            for topic in self.showing.topics.all():
+                award_points(topic, 1)
         else:
             apv = award_points(self.showing.user, -1)
         self.showing.user_state.store("last_points", apv.points)
