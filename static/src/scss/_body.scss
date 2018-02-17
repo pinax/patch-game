@@ -6,10 +6,63 @@ body {
 main {
   margin-top: 20px;
   flex: 1;
+  display: flex;
+  justify-content: space-around;
   .jumbotron {
     margin-top: -20px;
   }
 }
+.user-stats,
+.overall-stats {
+  margin-top: 40px;
+  text-align: center;
+  padding: 20px 40px;
+  background: #FFF;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.10);
+  border-radius: 3px;
+  height: auto;
+  position: relative;
+  .user-points {
+    .title {
+      background: $gray-100;
+      padding: 7px 40px;
+      margin: -20px -40px 20px -40px;
+      border-top-left-radius: 3px;
+      border-top-right-radius: 3px;
+      border-bottom: 1px solid $gray-300;
+      font-size: 1.1rem;
+      color: $gray-600;
+      text-transform: uppercase;
+    }
+    .points {
+      font-size: 4rem;
+      font-weight: 600;
+    }
+  }
+  .user-last-score {
+    opacity: 0;
+    font-size: 5rem;
+    animation: fadeUpIn 2s;
+    position: absolute;
+    top: 45px;
+    left: 200px;
+    &.negative {
+      color: $red;
+    }
+    &.positive {
+      color: $green;
+    }
+  }
+}
+
+@keyframes fadeUpIn /* Safari and Chrome */
+{
+  0% {opacity:0; transform: translateY(0);}
+  5% {opacity:1; transform: translateY(0);}
+  20% { opacity:1; transform: translateY(15px); }
+  100% { opacity:0; transform: translateY(-175px); }
+}
+
 #content-body {
   @include make-container();
   @include make-container-max-widths();
