@@ -1,5 +1,4 @@
 body.activity {
-    background: $gray-200;
     .activity {
         width: 500px;
         margin: 40px auto;
@@ -9,7 +8,7 @@ body.activity {
             margin-bottom: 20px;
         }
         background: #FFF;
-        box-shadow: 0 2px 4px 0 rgba(0,0,0,0.10);
+        box-shadow: 0 12px 24px 0 rgba(0, 0, 0, 0.3);
         border-radius: 3px;
 
         .you-win,
