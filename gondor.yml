@@ -1,5 +1,6 @@
 cluster: ""
 site: pinax/patchgame
+buildpack: https://github.com/heroku/heroku-buildpack-multi.git
 branches:
   master: primary
 deploy:
