@@ -1,0 +1,11 @@
+cluster: ""
+site: pinax/patchgame
+branches:
+  master: primary
+deploy:
+  services:
+  - web
+vcs:
+  branch: ""
+  commit: ""
+instances: {}
