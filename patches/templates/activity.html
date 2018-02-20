@@ -52,10 +52,15 @@
     <div class="stats-container">
         <div class="overall-stats">
             <div class="top-users">
+                <div class="title"><i class="fas fa-trophy"></i> Top Players</div>
+                <div class="users">
                 {% for user in top_users %}
-                    <div class="name">{{ user.get_full_name }}</div>
-                    <div class="points">{{ user.num_points }}</div>
+                    <div class="user">
+                        <div class="name">{{ user.get_full_name }}</div>
+                        <div class="points">{{ user.num_points }}</div>
+                    </div>
                 {% endfor %}
+                </div>
             </div>
         </div>
     </div>

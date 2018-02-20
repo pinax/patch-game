@@ -27,17 +27,6 @@ main {
   height: auto;
   position: relative;
   .user-points {
-    .title {
-      background: $gray-100;
-      padding: 7px 40px;
-      margin: -20px -40px 20px -40px;
-      border-top-left-radius: 3px;
-      border-top-right-radius: 3px;
-      border-bottom: 1px solid $gray-300;
-      font-size: 1.1rem;
-      color: $gray-600;
-      text-transform: uppercase;
-    }
     .points {
       font-size: 4rem;
       font-weight: 600;
@@ -58,7 +47,28 @@ main {
       animation: fadeUpIn 2s;
     }
   }
+  .top-users,
+  .user-points {
+    .title {
+      background: $gray-100;
+      padding: 7px 40px;
+      margin: -20px -40px 20px -40px;
+      border-top-left-radius: 3px;
+      border-top-right-radius: 3px;
+      border-bottom: 1px solid $gray-300;
+      font-size: 1.1rem;
+      color: $gray-600;
+      text-transform: uppercase;
+    }
+  }
   .top-users {
+    .users {
+      margin: 0 -20px;
+    }
+    .user {
+      display: flex;
+      justify-content: space-between;
+    }
     .name,
     .points {
       display: inline-block;
