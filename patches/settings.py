@@ -15,6 +15,7 @@ DATABASES = {
 
 ALLOWED_HOSTS = [
     "localhost",
+    "patchgame.pinaxproject.com"
 ]
 
 # Local time zone for this installation. Choices can be found here:
