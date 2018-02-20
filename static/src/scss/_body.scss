@@ -9,7 +9,8 @@ main {
   margin-top: 20px;
   flex: 1;
   display: flex;
-  justify-content: space-around;
+  align-items: center;
+  justify-content: center;
   .jumbotron {
     margin-top: -20px;
     background: none;
@@ -18,7 +19,6 @@ main {
 .user-stats,
 .overall-stats {
   width: 250px;
-  margin-top: 40px;
   text-align: center;
   padding: 20px 40px;
   background: #FFF;
@@ -46,15 +46,16 @@ main {
   .user-last-score {
     opacity: 0;
     font-size: 5rem;
-    animation: fadeUpIn 2s;
     position: absolute;
     top: 45px;
-    left: 200px;
+    left: calc(50% - 2.5rem);
     &.negative {
       color: $red;
+      animation: fadeDownIn 2s;
     }
     &.positive {
       color: $green;
+      animation: fadeUpIn 2s;
     }
   }
   .top-users {
@@ -77,8 +78,15 @@ main {
 {
   0% {opacity:0; transform: translateY(0);}
   5% {opacity:1; transform: translateY(0);}
-  20% { opacity:1; transform: translateY(15px); }
-  100% { opacity:0; transform: translateY(-175px); }
+  20% { opacity:1; transform: translateY(15px) translateX(40px); }
+  100% { opacity:0; transform: translateY(-375px); }
+}
+@keyframes fadeDownIn /* Safari and Chrome */
+{
+  0% {opacity:0; transform: translateY(0);}
+  5% {opacity:1; transform: translateY(0);}
+  20% { opacity:1; transform: translateY(-15px) translateX(40px); }
+  100% { opacity:0; transform: translateY(375px) translateX(0px); }
 }
 
 #content-body {
