@@ -3,7 +3,18 @@ body.activity {
         width: 500px;
         margin: 0 40px;
         text-align: center;
-        padding: 20px 40px;
+        padding: 20px 40px 40px 40px;
+        h1 {
+            background: $gray-100;
+            padding: 10px 40px;
+            margin: -20px -40px 20px -40px;
+            border-top-left-radius: 3px;
+            border-top-right-radius: 3px;
+            border-bottom: 1px solid $gray-300;
+            font-size: 1.5rem;
+            color: $gray-600;
+            text-transform: uppercase;
+        }
         img {
             margin-bottom: 20px;
         }
@@ -11,8 +22,7 @@ body.activity {
         box-shadow: 0 12px 24px 0 rgba(0, 0, 0, 0.3);
         border-radius: 3px;
 
-        .you-win,
-        .footer {
+        .you-win {
             figure {
                 display: inline;
                 img {

@@ -15,13 +15,6 @@
                 <input type="submit" class="patch-button" value="{{ choice }}" name="answer" />
             {% endfor %}
         </form>
-        <div class="footer">
-            {% for answer in correct_answers %}
-            <figure>
-                <img src="http://pinaxproject.com/pinax-design/patches/{{ answer }}.svg" />
-            </figure>
-            {% endfor %}
-        </div>
     {% else %}
         <h1>You Win!</h1>
         <div class="you-win">
@@ -42,6 +35,17 @@
         <div class="user-stats">
             <div class="user-points"><div class="title">Score</div><div class="points">{{ points }}</div></div>
             <div class="user-last-score {% if points_awarded < 0 %}negative{% else %}positive{% endif %}">{{ points_awarded }}</div>
+        </div>
+
+        <div class="user-stats mt-4">
+            <div class="correct-answers">
+                <div class="title">Correct Answers</div>
+                <div class="patches" data-per-row="5">
+                    {% for answer in correct_answers %}
+                        <img src="http://pinaxproject.com/pinax-design/patches/{{ answer }}.svg" />
+                    {% endfor %}
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}

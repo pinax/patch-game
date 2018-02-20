@@ -48,7 +48,8 @@ main {
     }
   }
   .top-users,
-  .user-points {
+  .user-points,
+  .correct-answers {
     .title {
       background: $gray-100;
       padding: 7px 40px;
@@ -59,6 +60,15 @@ main {
       font-size: 1.1rem;
       color: $gray-600;
       text-transform: uppercase;
+    }
+  }
+  .correct-answers {
+    .patches {
+      position: relative;
+      img {
+        width: 30px;
+        position: absolute;
+      }
     }
   }
   .top-users {

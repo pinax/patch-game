@@ -8,6 +8,7 @@ require('bootstrap/dist/js/bootstrap.bundle');
 import ajaxSendMethod from './ajax';
 import handleMessageDismiss from './messages';
 import loadTessellations from './tessellations';
+import { arrangeCorrectAnswers } from './tessellations';
 
 $(() => {
     $(document).ajaxSend(ajaxSendMethod);
@@ -28,4 +29,5 @@ $(() => {
 
     handleMessageDismiss();
     loadTessellations();
+    arrangeCorrectAnswers();
 });

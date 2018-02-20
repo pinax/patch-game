@@ -4,15 +4,15 @@
         "model": "sites.site",
         "fields": {
             "domain": "localhost:3000",
-            "name": "example.com [localhost]"
+            "name": "Guess the Patch [localhost]"
         }
     },
     {
         "pk": 2,
         "model": "sites.site",
         "fields": {
-            "domain": "example.com",
-            "name": "example.com"
+            "domain": "patchgame.pinaxproject.com",
+            "name": "Guess the Patch"
         }
     }
 ]
