@@ -10,7 +10,6 @@ from .views import HomePage, activity, response
 urlpatterns = [
     path("", HomePage.as_view(), name="home"),
     path("admin/", admin.site.urls),
-    path("account/", include("account.urls")),
     path("account/social/accounts/", TemplateView.as_view(template_name="account/social.html"), name="account_social_accounts"),
     path("account/social/", include("social_django.urls", namespace="social")),
 
