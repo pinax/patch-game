@@ -195,5 +195,6 @@ AUTHENTICATION_BACKENDS = [
     "social_core.backends.github.GithubOAuth2"
 ]
 
-SOCIAL_AUTH_GITHUB_KEY = "ec181e400a4cf42836a6"
-SOCIAL_AUTH_GITHUB_SECRET = "f96483f2d318edfff5c8a4dbda75f8ab7f66cb8d"
+SOCIAL_AUTH_GITHUB_KEY = os.environ.get("GITHUB_KEY", "")
+SOCIAL_AUTH_GITHUB_SECRET = os.environ.get("GITHUB_SECRET", "")
+
