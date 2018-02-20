@@ -11,13 +11,13 @@
     <section class="jumbotron">
         <div class="container">
             <div id="tessellations"
-                 data-apps="{% for app in apps %}{{ app }} {% endfor %}"
+                 data-apps="{% for app in apps %}{{ app.app }} {% endfor %}"
                  data-per-row="5">
-                    <a class="btn btn-lg btn-primary" href="{% url "social:begin" "github" %}">
-                        <i class="fab fa-github" aria-hidden="true"></i>
-                        {% trans "Login to Play" %}
-                    </a>
-                </div>
+                <a class="btn btn-lg btn-success" href="{% url "social:begin" "github" %}">
+                    <i class="fab fa-github" aria-hidden="true"></i>
+                    {% trans "Login to Play" %}
+                </a>
+            </div>
         </div>
     </section>
 </main>
